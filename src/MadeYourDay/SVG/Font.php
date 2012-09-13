@@ -12,13 +12,13 @@ use SimpleXMLElement;
 
 /**
  * SVG Font
- * 
+ *
  * @author ausi <martin@madeyourday.co>
  */
 class Font{
-	
+
 	protected $xmlDocument;
-	
+
 	protected $options = array(
 		'id'           => 'SVG Font',
 		'units-per-em' => 512,
@@ -28,9 +28,9 @@ class Font{
 		'x-height'     => 240,
 		'cap-height'   => 480,
 	);
-	
+
 	public function __construct($options = array(), $svgString = null){
-		
+
 		$newFont = false;
 		if($svgString === null){
 			$newFont = true;
@@ -38,9 +38,9 @@ class Font{
 				<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 				<svg xmlns="http://www.w3.org/2000/svg"></svg>';
 		}
-		
+
 		$this->xmlDocument = new SimpleXMLElement($svgString);
-		
+
 		if(!count($this->xmlDocument->defs)){
 			$this->xmlDocument->addChild('defs');
 		}
@@ -57,15 +57,15 @@ class Font{
 		if(!$newFont){
 			$options = array_merge($this->getOptionsFromXML(), $options);
 		}
-		
+
 		$this->setOptions($options);
-		
+
 	}
-	
+
 	public function setOptions($options = array()){
-		
+
 		$this->options = array_merge($this->options, $options);
-		
+
 		$this->xmlDocument->defs[0]->font[0]['id'] = $this->options['id'];
 		$this->xmlDocument->defs[0]->font[0]['horiz-adv-x'] = $this->options['horiz-adv-x'];
 		$this->xmlDocument->defs[0]->font[0]->{'font-face'}[0]['units-per-em'] = $this->options['units-per-em'];
@@ -74,11 +74,11 @@ class Font{
 		$this->xmlDocument->defs[0]->font[0]->{'font-face'}[0]['x-height'] = $this->options['x-height'];
 		$this->xmlDocument->defs[0]->font[0]->{'font-face'}[0]['cap-height'] = $this->options['cap-height'];
 		$this->xmlDocument->defs[0]->font[0]->{'missing-glyph'}[0]['horiz-adv-x'] = $this->options['horiz-adv-x'];
-		
+
 	}
-	
+
 	protected function getOptionsFromXML(){
-		
+
 		$options = array();
 
 		foreach(array('id', 'horiz-adv-x') as $key){
@@ -93,19 +93,19 @@ class Font{
 		}
 
 		return $options;
-		
+
 	}
-	
+
 	public function getOptions(){
 		return $this->options;
 	}
-	
+
 	public function getXML(){
 		return $this->xmlDocument->asXML();
 	}
 
 	public function addGlyph($char, $path, $name = null, $width = null){
-		
+
 		$glyph = $this->xmlDocument->defs[0]->font[0]->addChild('glyph');
 		$glyph->addAttribute('unicode', $char);
 		if($name !== null){
@@ -115,13 +115,13 @@ class Font{
 			$glyph->addAttribute('horiz-adv-x', $width);
 		}
 		$glyph->addAttribute('d', $path);
-		
+
 	}
 
 	public function getGlyphs(){
-		
+
 		if(
-			!isset($this->xmlDocument->defs[0]->font[0]->glyph) || 
+			!isset($this->xmlDocument->defs[0]->font[0]->glyph) ||
 			!count($this->xmlDocument->defs[0]->font[0]->glyph)
 		){
 			return array();
@@ -144,5 +144,5 @@ class Font{
 		}
 		return $glyphs;
 	}
-	
+
 }

@@ -10,22 +10,22 @@ namespace MadeYourDay\SVG;
 
 /**
  * SVG Font Generator
- * 
+ *
  * @author ausi <martin@madeyourday.co>
  */
 class FontGenerator{
-	
+
 	protected $font;
-	
+
 	protected $mapping = array();
 
 	public function generateFromDir($path, $fontOptions = array()){
-		
+
 		$this->font = new Font($fontOptions);
 		$this->mapping = array();
-		
+
 		$fontOptions = $this->font->getOptions();
-		
+
 		$files = scandir($path);
 		foreach($files as $fileName){
 			if(strtolower(substr($fileName, -4)) === '.svg'){
@@ -72,18 +72,18 @@ class FontGenerator{
 				throw new \Exception($fileName);
 			}
 		}
-		
+
 	}
-	
+
 	public function generateFromFont(Font $font){
 		$this->mapping = array();
 		$this->font = $font;
 	}
-	
+
 	public function getFont(){
 		return $this->font;
 	}
-	
+
 	public function getGlyphNames(){
 
 		$glyphNames = array();
@@ -93,9 +93,9 @@ class FontGenerator{
 		return $glyphNames;
 
 	}
-	
+
 	public function getCss(){
-		
+
 		$css = '';
 		foreach($this->getGlyphNames() as $unicode => $name){
 			$css .= ".icon-".$name.":before {"."\n";
@@ -103,9 +103,9 @@ class FontGenerator{
 			$css .= "}\n";
 		}
 		return $css;
-		
+
 	}
-	
+
 	public function saveGlyphsToDir($dir){
 
 		$fontOptions = $this->font->getOptions();
@@ -148,7 +148,7 @@ class FontGenerator{
 
 				$glyphDocument = Document::createFromPath($glyph['path'], $fontOptions['horiz-adv-x'], $fontOptions['units-per-em']);
 				if(file_put_contents(
-					$targetPath, 
+					$targetPath,
 					str_replace(array('%%%PATH%%%', '%%%WIDTH%%%'), array(
 						$glyphDocument->getPath(512/$fontOptions['units-per-em'], null, 'vertical', true, 0, -64),
 						empty($glyph['width']) ? 512 : ($glyph['width']*512/$fontOptions['units-per-em'])
