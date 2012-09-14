@@ -15,10 +15,26 @@ namespace MadeYourDay\SVG;
  */
 class FontGenerator{
 
+	/**
+	 * @var Font
+	 */
 	protected $font;
 
+	/**
+	 * @var array mapping information file path and name mapped to glyph character
+	 */
 	protected $mapping = array();
 
+	/**
+	 * generate a font from a directory containing svg files (one file per glyph)
+	 * by naming convention the file name can specify which character should be mapped to the glyph
+	 * - my-icon.png       => creates a glyph with the name 'my-icon' mapped to a character in the Unicode Private Use Area
+	 * - my-icon-x263a.png => creates a glyph with the name 'my-icon' mapped to the unicode character U+263A "☺"
+	 *
+	 * @param  string $path        SVG path definition (consider the font coordinate system has an inverted y axis)
+	 * @param  array  $fontOptions font options for the Font object
+	 * @return static              this
+	 */
 	public function generateFromDir($path, $fontOptions = array()){
 
 		$this->font = new Font($fontOptions);
@@ -73,17 +89,38 @@ class FontGenerator{
 			}
 		}
 
+		return $this;
+
 	}
 
+	/**
+	 * generate a font based on a existing SVG font
+	 *
+	 * @param  Font   $font font object
+	 * @return static       this
+	 */
 	public function generateFromFont(Font $font){
+
 		$this->mapping = array();
 		$this->font = $font;
+		return $this;
+
 	}
 
+	/**
+	 * get the font object
+	 *
+	 * @return Font font object
+	 */
 	public function getFont(){
 		return $this->font;
 	}
 
+	/**
+	 * get glyph names
+	 *
+	 * @return array array with the characters (in hex) as keys and the glyph names as values
+	 */
 	public function getGlyphNames(){
 
 		$glyphNames = array();
@@ -94,6 +131,11 @@ class FontGenerator{
 
 	}
 
+	/**
+	 * get css definition for icon class names
+	 *
+	 * @return string css class definitions
+	 */
 	public function getCss(){
 
 		$css = '';
@@ -106,6 +148,12 @@ class FontGenerator{
 
 	}
 
+	/**
+	 * save the current font as single svg files in a directory (counterpart of generateFromDir)
+	 *
+	 * @param  string $dir directory path
+	 * @return static      this
+	 */
 	public function saveGlyphsToDir($dir){
 
 		$fontOptions = $this->font->getOptions();
@@ -161,8 +209,16 @@ class FontGenerator{
 
 		}
 
+		return $this;
+
 	}
 
+	/**
+	 * get the unicode hex representation of a unicode character
+	 *
+	 * @param  string $char single character encoded as UTF-8
+	 * @return string       unicode hex representation of the character
+	 */
 	public static function unicodeToHex($char){
 
 		if(!is_string($char) || mb_strlen($char, 'utf-8') !== 1){
@@ -174,6 +230,12 @@ class FontGenerator{
 
 	}
 
+	/**
+	 * get the unicode character of a unicode hex string
+	 *
+	 * @param  string $char unicode hex representation (e.g. "263a")
+	 * @return string       single character encoded as UTF-8
+	 */
 	protected static function hexToUnicode($char){
 
 		if(!is_string($char) || !preg_match('(^[0-9a-f]{2,6}$)i', $char)){

@@ -17,8 +17,14 @@ use SimpleXMLElement;
  */
 class Font{
 
+	/**
+	 * @var SimpleXMLElement XML document
+	 */
 	protected $xmlDocument;
 
+	/**
+	 * @var array font options
+	 */
 	protected $options = array(
 		'id'           => 'SVG Font',
 		'units-per-em' => 512,
@@ -29,6 +35,12 @@ class Font{
 		'cap-height'   => 480,
 	);
 
+	/**
+	 * create a empty font or from a SVG XML string
+	 *
+	 * @param array  $options   font options
+	 * @param string $svgString SVG XML string
+	 */
 	public function __construct($options = array(), $svgString = null){
 
 		$newFont = false;
@@ -62,6 +74,11 @@ class Font{
 
 	}
 
+	/**
+	 * set font optinos
+	 *
+	 * @param array $options font options
+	 */
 	public function setOptions($options = array()){
 
 		$this->options = array_merge($this->options, $options);
@@ -77,6 +94,11 @@ class Font{
 
 	}
 
+	/**
+	 * returns font options stored in the XML document
+	 *
+	 * @return array font options
+	 */
 	protected function getOptionsFromXML(){
 
 		$options = array();
@@ -96,14 +118,32 @@ class Font{
 
 	}
 
+	/**
+	 * get font options
+	 *
+	 * @return array font options
+	 */
 	public function getOptions(){
 		return $this->options;
 	}
 
+	/**
+	 * get XML string
+	 *
+	 * @return string XML SVG string
+	 */
 	public function getXML(){
 		return $this->xmlDocument->asXML();
 	}
 
+	/**
+	 * add a glyph to the font
+	 *
+	 * @param string $char  character of the glyph
+	 * @param string $path  SVG path definition
+	 * @param string $name  name of the glyph
+	 * @param float  $width glyph width (horiz-adv-x)
+	 */
 	public function addGlyph($char, $path, $name = null, $width = null){
 
 		$glyph = $this->xmlDocument->defs[0]->font[0]->addChild('glyph');
@@ -118,6 +158,11 @@ class Font{
 
 	}
 
+	/**
+	 * get all glyphs
+	 *
+	 * @return array set of glyph arrays containing char, path, name and width (name and with are optional)
+	 */
 	public function getGlyphs(){
 
 		if(
