@@ -1,0 +1,21 @@
+{
+    "hash": "50c6ee778c163232ffafcaebe8f3b078",
+    "packages": [
+        {
+            "package": "symfony/class-loader",
+            "version": "v2.1.1"
+        },
+        {
+            "package": "symfony/console",
+            "version": "v2.1.1"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ]
+}
