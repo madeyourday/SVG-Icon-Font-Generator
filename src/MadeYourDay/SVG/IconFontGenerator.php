@@ -9,11 +9,11 @@
 namespace MadeYourDay\SVG;
 
 /**
- * SVG Font Generator
+ * SVG Icon Font Generator
  *
  * @author ausi <martin@madeyourday.co>
  */
-class FontGenerator{
+class IconFontGenerator{
 
 	/**
 	 * @var Font
