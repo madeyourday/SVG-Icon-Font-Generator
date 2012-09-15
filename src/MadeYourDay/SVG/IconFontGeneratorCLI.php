@@ -18,6 +18,9 @@ use MadeYourDay\SVG\IconFontGeneratorCLI\CreateFontCommand;
  */
 class IconFontGeneratorCLI extends Application{
 
+	/**
+	 * constructor, sets up application information and commands
+	 */
 	public function __construct(){
 
 		parent::__construct('SVG Icon Font Generator', '0.1.0');

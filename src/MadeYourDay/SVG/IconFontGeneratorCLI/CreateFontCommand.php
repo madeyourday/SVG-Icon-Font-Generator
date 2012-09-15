@@ -23,6 +23,11 @@ use MadeYourDay\SVG\IconFontGenerator;
  */
 class CreateFontCommand extends Command{
 
+	/**
+	 * configures the create-font command
+	 *
+	 * @return void
+	 */
 	protected function configure(){
 		$this
 			->setName('create-font')
@@ -32,6 +37,13 @@ class CreateFontCommand extends Command{
 		;
 	}
 
+	/**
+	 * creates a SVG Font out of SGV files from a directory
+	 *
+	 * @param  InputInterface  $input  input
+	 * @param  OutputInterface $output output
+	 * @return void
+	 */
 	protected function execute(InputInterface $input, OutputInterface $output){
 
 		$directory = $input->getArgument('directory');
