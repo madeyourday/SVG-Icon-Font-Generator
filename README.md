@@ -26,6 +26,8 @@ The files should be named like this:
 
 The list above generates the class names `icon-arrow-up`, `icon-magnifying-glass` and `icon-key`.
 
+For creating new icons you can use this SVG template: <https://github.com/downloads/madeyourday/SVG-Icon-Font-Generator/icon-template.svg>
+
 ### Create a set of SVG files from a SVG font
 
     php svg-icon-font-generator.phar create-files your-font.svg /path/to/svg/files
