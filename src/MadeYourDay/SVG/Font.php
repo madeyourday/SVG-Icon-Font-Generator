@@ -29,8 +29,8 @@ class Font{
 		'id'           => 'SVG Font',
 		'units-per-em' => 512,
 		'horiz-adv-x'  => 512,
-		'ascent'       => 480,
-		'descent'      => -32,
+		'ascent'       => 448,
+		'descent'      => -64,
 		'x-height'     => 240,
 		'cap-height'   => 480,
 	);
