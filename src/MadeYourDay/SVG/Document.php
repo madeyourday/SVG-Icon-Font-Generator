@@ -13,7 +13,7 @@ use SimpleXMLElement;
 /**
  * SVG Document
  *
- * @author ausi <martin@madeyourday.co>
+ * @author Martin Auswöger <martin@madeyourday.co>
  */
 class Document{
 

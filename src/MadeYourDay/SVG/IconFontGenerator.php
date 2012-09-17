@@ -11,7 +11,7 @@ namespace MadeYourDay\SVG;
 /**
  * SVG Icon Font Generator
  *
- * @author ausi <martin@madeyourday.co>
+ * @author Martin Auswöger <martin@madeyourday.co>
  */
 class IconFontGenerator{
 

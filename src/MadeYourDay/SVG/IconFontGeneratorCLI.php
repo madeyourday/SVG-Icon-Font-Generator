@@ -15,7 +15,7 @@ use MadeYourDay\SVG\IconFontGeneratorCLI\CreateFilesCommand;
 /**
  * SVG Icon Font Generator Command Line Application
  *
- * @author ausi <martin@madeyourday.co>
+ * @author Martin Auswöger <martin@madeyourday.co>
  */
 class IconFontGeneratorCLI extends Application{
 

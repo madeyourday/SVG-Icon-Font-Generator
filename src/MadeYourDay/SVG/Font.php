@@ -13,7 +13,7 @@ use SimpleXMLElement;
 /**
  * SVG Font
  *
- * @author ausi <martin@madeyourday.co>
+ * @author Martin Auswöger <martin@madeyourday.co>
  */
 class Font{
 

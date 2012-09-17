@@ -19,7 +19,7 @@ use MadeYourDay\SVG\IconFontGenerator;
 /**
  * create-font command
  *
- * @author ausi <martin@madeyourday.co>
+ * @author Martin Auswöger <martin@madeyourday.co>
  */
 class CreateFontCommand extends Command{
 

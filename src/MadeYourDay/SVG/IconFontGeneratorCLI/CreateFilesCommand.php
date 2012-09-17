@@ -20,7 +20,7 @@ use MadeYourDay\SVG\Font;
 /**
  * create-files command
  *
- * @author ausi <martin@madeyourday.co>
+ * @author Martin Auswöger <martin@madeyourday.co>
  */
 class CreateFilesCommand extends Command{
 
