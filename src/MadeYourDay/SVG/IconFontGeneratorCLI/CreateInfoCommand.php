@@ -59,6 +59,7 @@ class CreateInfoCommand extends Command{
 		$output->writeln('reading font file from "'.$fontFile.'" ...');
 		$generator->generateFromFont(new Font(array(), file_get_contents($fontFile)));
 
+		$output->writeln('writing HTML file to "'.$outputFile.'" ...');
 		file_put_contents($outputFile, $this->getHTMLFromGenerator($generator, basename($fontFile)));
 
 		$output->getFormatter()->setStyle('success', new OutputFormatterStyle(null, null, array('bold', 'reverse')));

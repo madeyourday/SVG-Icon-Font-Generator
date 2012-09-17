@@ -19,6 +19,13 @@ Or download it here: <https://github.com/madeyourday/SVG-Icon-Font-Generator/dow
 
     php svg-icon-font-generator.phar create-font /path/to/svg/files your-font.svg
 
+The files should be named like this:
+* `arrow-up-x2191.svg` use the correct unicode symbol if possible
+* `magnifying-glass-xe000.svg` otherwise use the unicode "Private Use Area"
+* `key.svg` this file gets automatically mapped to a unicode "Private Use Area" symbol
+
+The list above generates the class names `icon-arrow-up`, `icon-magnifying-glass` and `icon-key`.
+
 ### Create a set of SVG files from a SVG font
 
     php svg-icon-font-generator.phar create-files your-font.svg /path/to/svg/files
@@ -26,3 +33,9 @@ Or download it here: <https://github.com/madeyourday/SVG-Icon-Font-Generator/dow
 ### Create a HTML info page from a SVG font
 
     php svg-icon-font-generator.phar create-info your-font.svg your-font-info.html
+
+### Create a CSS file with icon classes from a SVG font
+
+    php svg-icon-font-generator.phar create-css your-font.svg your-icons.css
+
+The icon class names are based on the `glyph-name`s specified in the SVG file.
