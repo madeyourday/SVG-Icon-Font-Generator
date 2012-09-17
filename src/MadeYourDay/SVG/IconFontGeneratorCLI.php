@@ -11,6 +11,7 @@ namespace MadeYourDay\SVG;
 use Symfony\Component\Console\Application;
 use MadeYourDay\SVG\IconFontGeneratorCLI\CreateFontCommand;
 use MadeYourDay\SVG\IconFontGeneratorCLI\CreateFilesCommand;
+use MadeYourDay\SVG\IconFontGeneratorCLI\CreateInfoCommand;
 
 /**
  * SVG Icon Font Generator Command Line Application
@@ -28,6 +29,7 @@ class IconFontGeneratorCLI extends Application{
 
 		$this->add(new CreateFontCommand);
 		$this->add(new CreateFilesCommand);
+		$this->add(new CreateInfoCommand);
 
 	}
 
