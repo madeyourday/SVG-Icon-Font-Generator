@@ -13,6 +13,9 @@ You can create the svg-icon-font-generator.phar by yourself using the following 
 
 Or download it here: <https://github.com/madeyourday/SVG-Icon-Font-Generator/downloads>
 
+### System Requirements
+PHP 5.3 or higher
+
 ## Using
 
 ### Create a SVG font from a set of SVG files
