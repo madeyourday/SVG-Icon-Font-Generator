@@ -1,4 +1,6 @@
 # sublime project files
 /*.sublime-project
 /*.sublime-workspace
+
 /svg-icon-font-generator.phar
+/composer.phar
