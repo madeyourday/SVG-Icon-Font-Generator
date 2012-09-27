@@ -31,11 +31,12 @@ class IconFontGenerator{
 	 * - my-icon.png       => creates a glyph with the name 'my-icon' mapped to a character in the Unicode Private Use Area
 	 * - my-icon-x263a.png => creates a glyph with the name 'my-icon' mapped to the unicode character U+263A "☺"
 	 *
-	 * @param  string $path        SVG path definition (consider the font coordinate system has an inverted y axis)
-	 * @param  array  $fontOptions font options for the Font object
-	 * @return static              this
+	 * @param  string  $path              SVG path definition (consider the font coordinate system has an inverted y axis)
+	 * @param  array   $fontOptions       font options for the Font object
+	 * @param  boolean $renameSourceFiles if true, files without mapping information will be renamed
+	 * @return static                     this
 	 */
-	public function generateFromDir($path, $fontOptions = array()){
+	public function generateFromDir($path, $fontOptions = array(), $renameSourceFiles = false){
 
 		$this->font = new Font($fontOptions);
 		$this->mapping = array();
@@ -65,6 +66,12 @@ class IconFontGenerator{
 					$code = hexdec('e000');
 					while(isset($this->mapping[static::hexToUnicode(dechex($code))])){
 						$code++;
+					}
+					if($renameSourceFiles){
+						if(!rename($path.DIRECTORY_SEPARATOR.$fileName, $path.DIRECTORY_SEPARATOR.$iconName.'-x'.dechex($code).'.svg')){
+							throw new \Exception('unable to rename "'.$path.DIRECTORY_SEPARATOR.$fileName.'"');
+						}
+						$fileName = $iconName.'-x'.dechex($code).'.svg';
 					}
 					$this->mapping[static::hexToUnicode(dechex($code))] = array(
 						'path' => $path.DIRECTORY_SEPARATOR.$fileName,

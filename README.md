@@ -22,12 +22,12 @@ PHP 5.3 or higher
 
 ### Create a SVG font from a set of SVG files
 
-    php svg-icon-font-generator.phar create-font /path/to/svg/files your-font.svg
+    php svg-icon-font-generator.phar create-font /path/to/svg/files your-font.svg --rename-files
 
 The files should be named like this:
 * `arrow-up-x2191.svg` use the correct unicode symbol if possible
 * `magnifying-glass-xe000.svg` otherwise use the unicode "Private Use Area"
-* `key.svg` this file gets automatically mapped to a unicode "Private Use Area" symbol
+* `key.svg` this file gets automatically mapped to a unicode "Private Use Area" symbol, if you use the `--rename-files` option this file will be renamed to something like `key-xe001.svg`
 
 The list above generates the class names `icon-arrow-up`, `icon-magnifying-glass` and `icon-key`.
 
