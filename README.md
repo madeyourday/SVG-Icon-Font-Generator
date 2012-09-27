@@ -6,9 +6,11 @@ The glyph mapping is based on the file names – that makes updating and extendi
 ## Installation
 
 You can create the svg-icon-font-generator.phar by yourself using the following commands:
+(this requires [composer.phar](http://getcomposer.org/) to be installed)
 
     git clone https://github.com/madeyourday/SVG-Icon-Font-Generator.git
     cd SVG-Icon-Font-Generator
+    php composer.phar install
     php build.php
 
 Or download it here: <https://github.com/madeyourday/SVG-Icon-Font-Generator/downloads>

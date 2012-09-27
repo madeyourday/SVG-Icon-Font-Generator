@@ -6,8 +6,6 @@
  * file that was distributed with this source code.
  */
 
-system('php '.escapeshellarg(__DIR__.'/composer.phar').' install');
-
 $pharPath = __DIR__.'/svg-icon-font-generator.phar';
 
 if(file_exists($pharPath)){
