@@ -92,7 +92,7 @@ class IconFontGenerator{
 				);
 			}
 			catch(\Exception $e){
-				throw new \Exception($fileName);
+				throw new \Exception(basename($icon['path']).': '.$e->getMessage());
 			}
 		}
 
