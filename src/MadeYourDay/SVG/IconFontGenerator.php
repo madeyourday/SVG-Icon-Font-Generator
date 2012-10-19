@@ -165,24 +165,36 @@ class IconFontGenerator{
 
 		$fontOptions = $this->font->getOptions();
 
-		$svgTemplate = '<?xml version="1.0" encoding="utf-8"?>'.
-			'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'.
-			'<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="%%%WIDTH%%%px" height="512px" viewBox="0 0 %%%WIDTH%%% 512" enable-background="new 0 0 512 512" xml:space="preserve">'.
-			'	<g id="Grid">'.
-			'		<rect x="0" fill="none" stroke="#A9CCDB" stroke-miterlimit="10" width="512" height="512"/>';
+		$svgTemplate = '<?xml version="1.0" encoding="utf-8"?>'."\n".
+			'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'."\n".
+			'<svg'."\n".
+			'	version="1.1"'."\n".
+			'	id="Layer_1"'."\n".
+			'	xmlns="http://www.w3.org/2000/svg"'."\n".
+			'	xmlns:xlink="http://www.w3.org/1999/xlink"'."\n".
+			'	x="0px"'."\n".
+			'	y="0px"'."\n".
+			'	width="%%%WIDTH%%%px"'."\n".
+			'	height="512px"'."\n".
+			'	viewBox="0 0 %%%WIDTH%%% 512"'."\n".
+			'	enable-background="new 0 0 512 512"'."\n".
+			'	xml:space="preserve"'."\n".
+			'>'."\n".
+			'	<g id="Grid">'."\n".
+			'		<rect x="0" fill="none" stroke="#A9CCDB" stroke-miterlimit="10" width="512" height="512"/>'."\n";
 		for($i = 32; $i < 512; $i += 32){
 			$color = 'A9CCDB';
 			if($i === 448){
 				$color = 'FF0000';
 			}
-			$svgTemplate .= '<line fill="none" stroke="#'.$color.'" stroke-miterlimit="10" x1="0" y1="'.$i.'" x2="512" y2="'.$i.'"/>';
+			$svgTemplate .= '		<line fill="none" stroke="#'.$color.'" stroke-miterlimit="10" x1="0" y1="'.$i.'" x2="512" y2="'.$i.'"/>'."\n";
 		}
 		for($i = 32; $i < 512; $i += 32){
-			$svgTemplate .= '<line fill="none" stroke="#A9CCDB" stroke-miterlimit="10" x1="'.$i.'" y1="0" x2="'.$i.'" y2="512"/>';
+			$svgTemplate .= '		<line fill="none" stroke="#A9CCDB" stroke-miterlimit="10" x1="'.$i.'" y1="0" x2="'.$i.'" y2="512"/>'."\n";
 		}
-		$svgTemplate .= '</g>'.
-			'<path d="%%%PATH%%%"/>'.
-			'</svg>';
+		$svgTemplate .= '	</g>'."\n".
+			'	<path d="%%%PATH%%%"/>'."\n".
+			'</svg>'."\n";
 
 		if(!is_dir($dir)){
 			throw new \InvalidArgumentException('$dir must be a writable directory');
