@@ -26,8 +26,8 @@ PHP 5.3 or higher
 
 The files should be named like this:
 * `arrow-up-x2191.svg` use the correct unicode symbol if possible
-* `magnifying-glass-xe000.svg` otherwise use the unicode "Private Use Area"
-* `key.svg` this file gets automatically mapped to a unicode "Private Use Area" symbol, if you use the `--rename-files` option this file will be renamed to something like `key-xe001.svg`
+* `magnifying-glass-xe001.svg` otherwise use the unicode "Private Use Area" (start from xe001, don't use xe000)
+* `key.svg` this file gets automatically mapped to a unicode "Private Use Area" symbol, if you use the `--rename-files` option this file will be renamed to something like `key-xe002.svg`
 
 The list above generates the class names `icon-arrow-up`, `icon-magnifying-glass` and `icon-key`.
 

@@ -63,7 +63,7 @@ class IconFontGenerator{
 			if(strtolower(substr($fileName, -4)) === '.svg'){
 				if(!preg_match('(^(.*)-x([0-9a-f]{2,6})\\.svg$)i', $fileName)){
 					$iconName = strtolower(substr($fileName, 0, -4));
-					$code = hexdec('e000');
+					$code = hexdec('e001');
 					while(isset($this->mapping[static::hexToUnicode(dechex($code))])){
 						$code++;
 					}
