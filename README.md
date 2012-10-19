@@ -1,6 +1,6 @@
 # SVG-Icon-Font-Generator
 
-Creates a SVG font from a set of SVG files and vice versa. 
+Creates a SVG font from a set of SVG files and vice versa.  
 The glyph mapping is based on the file names – that makes updating and extending easy and fast.
 
 ## Installation
@@ -32,6 +32,8 @@ The files should be named like this:
 The list above generates the class names `icon-arrow-up`, `icon-magnifying-glass` and `icon-key`.
 
 For creating new icons you can use this SVG template: <https://github.com/downloads/madeyourday/SVG-Icon-Font-Generator/icon-template.svg>
+
+An example set of SVG files can be found here: <https://github.com/madeyourday/RockSolid-Icon-Font/tree/master/svg>
 
 ### Create a set of SVG files from a SVG font
 
