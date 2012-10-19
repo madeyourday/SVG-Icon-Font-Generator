@@ -145,7 +145,10 @@ class CreateInfoCommand extends Command{
 			<body>
 			<section id="glyphs">';
 
-		foreach($generator->getGlyphNames() as $unicode => $glyph){
+		$glyphNames = $generator->getGlyphNames();
+		asort($glyphNames);
+
+		foreach($glyphNames as $unicode => $glyph){
 			$html .= '<div class="glyph">
 				<div class="glyph-icon" data-icon="&#x'.$unicode.';"></div>
 				<div class="class-name">icon-'.$glyph.'</div>
