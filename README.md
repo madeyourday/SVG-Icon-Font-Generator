@@ -13,7 +13,7 @@ You can create the svg-icon-font-generator.phar by yourself using the following 
     php composer.phar install
     php build.php
 
-Or download it here: <https://github.com/madeyourday/SVG-Icon-Font-Generator/downloads>
+Or download the latest release here: <https://github.com/madeyourday/SVG-Icon-Font-Generator/releases>
 
 ### System Requirements
 * PHP 5.3 or higher
