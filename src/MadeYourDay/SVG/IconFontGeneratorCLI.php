@@ -26,7 +26,7 @@ class IconFontGeneratorCLI extends Application{
 	 */
 	public function __construct(){
 
-		parent::__construct('SVG Icon Font Generator', '0.1.2');
+		parent::__construct('SVG Icon Font Generator', '0.1.3');
 
 		$this->add(new CreateFontCommand);
 		$this->add(new CreateFilesCommand);

@@ -35,6 +35,7 @@ class CreateInfoCommand extends Command{
 			->setDescription('Creates a HTML info page out of a SVG font')
 			->addArgument('font-file', InputArgument::REQUIRED, 'path to the SVG font file')
 			->addArgument('output-file', InputArgument::REQUIRED, 'path where the HTML page should be saved')
+			->addOption('as-list', 'l', InputOption::VALUE_NONE, 'if set the generated HTML file will be a simple unordered list instead of a full HTML document')
 		;
 	}
 
@@ -60,7 +61,13 @@ class CreateInfoCommand extends Command{
 		$generator->generateFromFont(new Font(array(), file_get_contents($fontFile)));
 
 		$output->writeln('writing HTML file to "'.$outputFile.'" ...');
-		file_put_contents($outputFile, $this->getHTMLFromGenerator($generator, basename($fontFile)));
+		if ($input->getOption('as-list')) {
+			$html = $this->getHTMLListFromGenerator($generator, basename($fontFile));
+		}
+		else {
+			$html = $this->getHTMLFromGenerator($generator, basename($fontFile));
+		}
+		file_put_contents($outputFile, $html);
 
 		$output->getFormatter()->setStyle('success', new OutputFormatterStyle(null, null, array('bold', 'reverse')));
 
@@ -161,6 +168,35 @@ class CreateInfoCommand extends Command{
 		$html .= '</section>
 			</body>
 		</html>';
+
+		return $html;
+
+	}
+
+	/**
+	 * creates a HTML list
+	 *
+	 * @param  IconFontGenerator $generator icon font generator
+	 * @param  string            $fontFile  font file name
+	 * @return string                       HTML unordered list
+	 */
+	protected function getHTMLListFromGenerator(IconFontGenerator $generator, $fontFile){
+
+		$fontOptions = $generator->getFont()->getOptions();
+
+		$html = '<ul>';
+
+		$glyphNames = $generator->getGlyphNames();
+		asort($glyphNames);
+
+		foreach($glyphNames as $unicode => $glyph){
+			$html .= "\n\t" .
+				'<li data-icon="&#x'.$unicode.';" title="' .
+				htmlspecialchars($glyph) . '">' .
+				htmlspecialchars($glyph) . '</li>';
+		}
+
+		$html .= "\n" . '</ul>' . "\n";
 
 		return $html;
 
