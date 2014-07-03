@@ -14,7 +14,7 @@
 		"issues":"https://github.com/madeyourday/SVG-Icon-Font-Generator/issues",
 		"source":"https://github.com/madeyourday/SVG-Icon-Font-Generator"
 	},
-	"bin": ["run.php"],
+	"bin": ["bin/composer/svg-icon-font-generator"],
 	"require": {
 		"symfony/console": "~2.1"
 	},
