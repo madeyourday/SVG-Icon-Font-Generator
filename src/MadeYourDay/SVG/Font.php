@@ -26,7 +26,7 @@ class Font{
 	 * @var array font options
 	 */
 	protected $options = array(
-		'id'           => 'SVG Font',
+		'id'           => 'SVGFont',
 		'units-per-em' => 512,
 		'horiz-adv-x'  => 512,
 		'ascent'       => 448,
