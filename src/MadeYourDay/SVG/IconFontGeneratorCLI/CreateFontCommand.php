@@ -34,8 +34,8 @@ class CreateFontCommand extends Command{
 			->setDescription('Creates a SVG Font out of SGV files from a directory')
 			->addArgument('directory', InputArgument::REQUIRED, 'path to directory containging SVG files')
 			->addArgument('output-file', InputArgument::REQUIRED, 'path to the output file')
-			->addOption('rename-files', 'r', InputOption::VALUE_NONE, 'if set, files without mapping information will be renamed to include the mapping information (e.g. my-icon.svg renamed to my-icon-xe001.svg)')
-			->addOption('name', 'n', InputOption::VALUE_REQUIRED, 'name of the font')
+			->addOption('rename-files', null, InputOption::VALUE_NONE, 'if set, files without mapping information will be renamed to include the mapping information (e.g. my-icon.svg renamed to my-icon-xe001.svg)')
+			->addOption('name', null, InputOption::VALUE_REQUIRED, 'name of the font')
 		;
 	}
 
