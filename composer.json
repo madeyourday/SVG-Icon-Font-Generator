@@ -1,6 +1,27 @@
 {
+	"name":"madeyourday/svg-icon-font-generator",
+	"description":"Creates a SVG font from a set of SVG files and vice versa. The glyph mapping is based on the file names – that makes updating and extending easy and fast.",
+	"homepage":"https://github.com/madeyourday/SVG-Icon-Font-Generator",
+	"license":"MIT",
+	"authors":[
+		{
+			"name":"MADE/YOUR/DAY",
+			"homepage":"https://github.com/madeyourday",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://github.com/madeyourday/SVG-Icon-Font-Generator/issues",
+		"source":"https://github.com/madeyourday/SVG-Icon-Font-Generator"
+	},
+	"bin": ["run.php"],
 	"require": {
-		"symfony/console": "2.1.1",
-		"symfony/class-loader": "2.1.1"
+		"symfony/console": "^2.1.1"
+	},
+	"require-dev": {
+		"symfony/class-loader": "^2.1.1"
+	},
+	"autoload":{
+		"classmap":["src/"]
 	}
 }
