@@ -55,7 +55,7 @@ class CreateFontCommand extends Command{
 
 		$output->writeln('reading files from "'.$directory.'" ...');
 		$generator->generateFromDir($directory, array(
-			'id' => $input->getOption('rename-files') ?: 'SVGFont',
+			'id' => $input->getOption('name') ?: 'SVGFont',
 		), $input->getOption('rename-files'));
 
 		$output->writeln('writing font to "'.$outputFile.'" ...');
