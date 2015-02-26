@@ -93,7 +93,9 @@ class CreateInfoCommand extends Command{
 			<style>
 				@font-face {
 					font-family: "'.$fontOptions['id'].'";
-					src: url("'.$fontFile.'") format("svg");
+					src: url("'.$fontFile.'") format("svg"),
+					     url("'.substr($fontFile, 0, -4).'.woff") format("woff"),
+					     url("'.substr($fontFile, 0, -4).'.ttf") format("truetype");
 					font-weight: normal;
 					font-style: normal;
 				}
