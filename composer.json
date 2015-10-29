@@ -18,9 +18,6 @@
 	"require": {
 		"symfony/console": "~2.1"
 	},
-	"require-dev": {
-		"symfony/class-loader": "~2.1"
-	},
 	"autoload":{
 		"classmap":["src/"]
 	}
