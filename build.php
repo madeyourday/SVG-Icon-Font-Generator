@@ -21,10 +21,10 @@ $files->append(new ArrayIterator(array(
 	'run.php' => __DIR__.'/run.php',
 )));
 $files->append(new RecursiveIteratorIterator(
-	new RecursiveDirectoryIterator(__DIR__.'/src')
+	new RecursiveDirectoryIterator(__DIR__.'/src', FilesystemIterator::SKIP_DOTS)
 ));
 $files->append(new RecursiveIteratorIterator(
-	new RecursiveDirectoryIterator(__DIR__.'/vendor')
+	new RecursiveDirectoryIterator(__DIR__.'/vendor', FilesystemIterator::SKIP_DOTS)
 ));
 
 $phar->buildFromIterator($files, __DIR__);
