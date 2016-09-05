@@ -72,7 +72,7 @@ class Document{
 
 		if(!empty($this->xmlDocument['viewBox'])){
 
-			$viewBox = explode(' ', trim(preg_replace('([\\s,]+)', ' ', $this->xmlDocument['viewBox'])));
+			$viewBox = $this->getValuesFromList($this->xmlDocument['viewBox']);
 			if(count($viewBox) !== 4){
 				return null;
 			}
@@ -171,7 +171,7 @@ class Document{
 					$path .= ' '.$this->getPathFromEllipse($child);
 				}
 				elseif($childName === 'path'){
-					$pathPart = trim(preg_replace('([\\s,]+)', ' ', $child['d']));
+					$pathPart = trim($child['d']);
 					if(substr($pathPart, 0, 1) === 'm'){
 						$pathPart = 'M'.substr($pathPart, 1);
 					}
@@ -201,7 +201,7 @@ class Document{
 			$viewBox = $this->getViewBox();
 		}
 
-		return preg_replace_callback('([m,l,h,v,c,s,q,t,a,z]\\s*(?:\\s*-?\\d+(?:\\.\\d+)?)*)i', function($maches) use ($scale, $roundPrecision, $flip, $xOffset, $yOffset, $viewBox){
+		return preg_replace_callback('([m,l,h,v,c,s,q,t,a,z]\\s*(?:\\s*-?(?=\\.?\\d)\\d*(?:\\.\\d+)?)*)i', function($maches) use ($scale, $roundPrecision, $flip, $xOffset, $yOffset, $viewBox){
 
 			$command = substr($maches[0], 0, 1);
 			$absoluteCommand = strtoupper($command) === $command;
@@ -214,7 +214,7 @@ class Document{
 			if(strtolower($command) === 'a'){
 				throw new \Exception('Path command "A" is currently not supportet!');
 			}
-			$values = explode(' ', trim(preg_replace(array('(-)', '([\\s,]+)'), array(' -', ' '), substr($maches[0], 1))));
+			$values = $this->getValuesFromList(substr($maches[0], 1));
 
 			foreach($values as $key => $value) {
 
@@ -269,7 +269,7 @@ class Document{
 	 */
 	protected function getPathFromPolygon(SimpleXMLElement $polygon){
 
-		$points = explode(' ', trim(preg_replace('([\\s,]+)', ' ', $polygon['points'])));
+		$points = $this->getValuesFromList($polygon['points']);
 		$path = 'M'.array_shift($points).' '.array_shift($points);
 		while(count($points)){
 			$path .= 'L'.array_shift($points).' '.array_shift($points);
@@ -334,6 +334,25 @@ class Document{
 			'C'.($ellipse['cx']+$ellipse['rx']).' '.($ellipse['cy']+$ellipse['ry']*$mult).' '.($ellipse['cx']+$ellipse['rx']*$mult).' '.($ellipse['cy']+$ellipse['ry']).' '.$ellipse['cx'].' '.($ellipse['cy']+$ellipse['ry']).
 			'C'.($ellipse['cx']-$ellipse['rx']*$mult).' '.($ellipse['cy']+$ellipse['ry']).' '.($ellipse['cx']-$ellipse['rx']).' '.($ellipse['cy']+$ellipse['ry']*$mult).' '.($ellipse['cx']-$ellipse['rx']).' '.$ellipse['cy'].
 			'Z';
+
+	}
+
+	/**
+	 * converts a string list into single values
+	 *
+	 * Should match 123,-123 1.23-1.23 as four numbers (123, -123, 1.23, -1.23)
+	 * Should match 1.2.3 as two numbers (1.2, 0.3)
+	 * Should match -.1.2.3 as three numbers (-0.1, 0.2, 0.3)
+	 *
+	 * @param  string $list
+	 * @return string[]
+	 */
+	protected function getValuesFromList($list){
+
+		if(preg_match_all('(-?(?=\\.?\\d)\\d*(?:\\.\\d+)?)i', $list, $values)){
+			return $values[0];
+		}
+		return array();
 
 	}
 
