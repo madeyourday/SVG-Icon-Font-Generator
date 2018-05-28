@@ -201,7 +201,7 @@ class Document{
 			$viewBox = $this->getViewBox();
 		}
 
-		return preg_replace_callback('([m,l,h,v,c,s,q,t,a,z]\\s*(?:\\s*-?(?=\\.?\\d)\\d*(?:\\.\\d+)?)*)i', function($maches) use ($scale, $roundPrecision, $flip, $xOffset, $yOffset, $viewBox){
+		return preg_replace_callback('([m,l,h,v,c,s,q,t,a,z](?:[\\s,]*-?(?=\\.?\\d)\\d*(?:\\.\\d+)?)*)i', function($maches) use ($scale, $roundPrecision, $flip, $xOffset, $yOffset, $viewBox){
 
 			$command = substr($maches[0], 0, 1);
 			$absoluteCommand = strtoupper($command) === $command;
