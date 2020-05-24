@@ -239,14 +239,16 @@ class IconFontGenerator{
 	 * @return string       unicode hex representation of the character
 	 */
 	public static function unicodeToHex($char){
-
 		if(!is_string($char) || mb_strlen($char, 'utf-8') !== 1){
-			throw new \InvalidArgumentException('$char must be one single character');
+			//throw new \InvalidArgumentException('$char must be one single character: '. print_r($char, true));
+			$unicode = unpack('N', mb_convert_encoding(print_r($char, true), 'UCS-4BE', 'UTF-8'));
+			if(empty($unicode[1])){
+				return dechex(print_r($char, true));
+			}
+			return dechex($unicode[1]);
 		}
-
 		$unicode = unpack('N', mb_convert_encoding($char, 'UCS-4BE', 'UTF-8'));
 		return dechex($unicode[1]);
-
 	}
 
 	/**
