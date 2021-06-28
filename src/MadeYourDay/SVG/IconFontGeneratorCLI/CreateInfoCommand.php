@@ -159,11 +159,11 @@ class CreateInfoCommand extends Command{
 
 		foreach($glyphNames as $unicode => $glyph){
 			$html .= '<div class="glyph">
-				<div class="glyph-icon" data-icon="&#x'.$unicode.';"></div>
+				<div class="glyph-icon" data-icon="&#x'.str_replace('-', ';&#x', $unicode).';"></div>
 				<div class="class-name">icon-'.$glyph.'</div>
-				<input type="text" readonly="readonly" value="&amp;#x'.$unicode.';" />
-				<input type="text" readonly="readonly" value="\\'.$unicode.'" />
-				<input type="text" readonly="readonly" value="&#x'.$unicode.';" class="icon-input" />
+				<input type="text" readonly="readonly" value="&amp;#x'.str_replace('-', ';&amp;#x', $unicode).';" />
+				<input type="text" readonly="readonly" value="\\'.str_replace('-', '\\', $unicode).'" />
+				<input type="text" readonly="readonly" value="&#x'.str_replace('-', ';&#x', $unicode).';" class="icon-input" />
 			</div>';
 		}
 
@@ -193,7 +193,7 @@ class CreateInfoCommand extends Command{
 
 		foreach($glyphNames as $unicode => $glyph){
 			$html .= "\n\t" .
-				'<li data-icon="&#x'.$unicode.';" title="' .
+				'<li data-icon="&#x'.str_replace('-', ';&#x', $unicode).';" title="' .
 				htmlspecialchars($glyph) . '">' .
 				htmlspecialchars($glyph) . '</li>';
 		}

@@ -148,7 +148,7 @@ class IconFontGenerator{
 		$css = '';
 		foreach($this->getGlyphNames() as $unicode => $name){
 			$css .= ".icon-".$name.":before {"."\n";
-			$css .= "\tcontent: \"\\".$unicode."\";\n";
+			$css .= "\tcontent: \"\\".str_replace('-', '\\', $unicode)."\";\n";
 			$css .= "}\n";
 		}
 		return $css;
@@ -213,7 +213,7 @@ class IconFontGenerator{
 			}
 			else{
 
-				$glyphDocument = Document::createFromPath($glyph['path'], $fontOptions['horiz-adv-x'], $fontOptions['units-per-em']);
+				$glyphDocument = Document::createFromPath($glyph['path'], empty($fontOptions['horiz-adv-x']) ? $fontOptions['units-per-em'] : $fontOptions['horiz-adv-x'], $fontOptions['units-per-em']);
 				if(file_put_contents(
 					$targetPath,
 					str_replace(array('%%%PATH%%%', '%%%WIDTH%%%'), array(
@@ -240,13 +240,13 @@ class IconFontGenerator{
 	 */
 	public static function unicodeToHex($char){
 
-		if(!is_string($char) || mb_strlen($char, 'utf-8') !== 1){
+		if(!is_string($char) || !mb_strlen($char, 'utf-8')){
 			throw new \InvalidArgumentException('$char must be one single character');
 		}
 
-		$unicode = unpack('N', mb_convert_encoding($char, 'UCS-4BE', 'UTF-8'));
-		return dechex($unicode[1]);
+		$unicode = unpack('N*', mb_convert_encoding($char, 'UCS-4BE', 'UTF-8'));
 
+		return implode('-', array_map('dechex', $unicode));
 	}
 
 	/**
